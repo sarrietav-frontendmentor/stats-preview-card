@@ -1,0 +1,145 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+@mixin phone-styles {
+  @media only screen and (max-width: 375px) {
+    @content;
+  }
+}
+
+:root {
+  box-sizing: border-box;
+  font-size: 93.75%;
+
+  @include phone-styles {
+    font-size: 62.5%;
+  }
+
+  --accent: hsl(277, 64%, 61%);
+
+  --bg-color: hsl(233, 47%, 7%);
+  --card-bg-color: hsl(244, 38%, 16%);
+  --image-bg-color: hsla(277, 64%, 61%, 0.438);
+
+  --white: hsl(0, 0%, 100%);
+  --white-paragraph: hsla(0, 0%, 100%, 0.75);
+  --white-headings: hsl(0, 0%, 100%, 0.6);
+
+  --heading-font: 'Lexend Deca', sans-serif;
+  --main-font: 'Inter', sans-serif;
+
+  --border-radius: 0.5rem;
+}
+
+body {
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  @include phone-styles {
+    padding: 3rem 4rem;
+  }
+}
+
+.card {
+  background-color: var(--card-bg-color);
+  display: flex;
+  border-radius: var(--border-radius);
+  height: 30rem;
+
+  @include phone-styles {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .info {
+    padding: 3rem 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    @include phone-styles {
+      order: 2;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 1.25rem;
+
+      & > * {
+        margin: 2rem 0;
+      }
+    }
+
+    &__heading {
+      font-size: 2.5rem;
+      font-family: var(--heading-font);
+      color: var(--white);
+
+      @include phone-styles {
+        font-size: 2.25rem;
+      }
+
+      span {
+        color: var(--accent);
+      }
+    }
+
+    &__paragraph {
+      font-family: var(--main-font);
+      color: var(--white-paragraph);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+
+      @include phone-styles {
+        flex-direction: column;
+        margin: 1rem 0;
+
+        & > * {
+          margin: 2rem;
+        }
+      }
+
+      &__item {
+        h2 {
+          font-family: var(--heading-font);
+          color: var(--white);
+        }
+
+        p {
+          font-family: var(--main-font);
+          color: var(--white-headings);
+        }
+      }
+    }
+  }
+
+  .image {
+    background-image: linear-gradient(
+        var(--image-bg-color),
+        var(--image-bg-color)
+      ),
+      url(../assets/images/image-header-desktop.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top left;
+    width: 100%;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+
+    @include phone-styles {
+      height: 20rem;
+      border-bottom-right-radius: initial;
+      border-top-left-radius: var(--border-radius);
+    }
+  }
+}
