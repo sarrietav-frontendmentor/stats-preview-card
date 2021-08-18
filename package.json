@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://sarrietav-frontendmentor.github.io/stats-preview-card/",
   "scripts": {
     "sass": "node-sass sass/main.scss css/style.css -w --source-map true",
     "compile:sass": "node-sass sass/main.scss css/style.comp.css",
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css",
     "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
-    "build:css": "npm-run-all compile:sass prefix:css compress:css"
+    "build:css": "npm-run-all compile:sass prefix:css compress:css",
+    "predeploy": "yarn build:css",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
